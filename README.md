@@ -11,8 +11,6 @@ Python SDK for Beeper operations on BNB Smart Chain.
 - Wallet management
 
 ## Installation
-
-+ TODO: upload to pypi
  
 ```bash
 pip install beeper-python
@@ -22,10 +20,12 @@ pip install beeper-python
 
 ```python
 from beeper.chain import BeeperClient
+from beeper.util import BSC_MAINNET_SETTINGS, BSC_TESTNET_SETTINGS
 
 # Initialize client
+# config is BSC_TESTNET_SETTINGS or BSC_MAINNET_SETTINGS
 client = BeeperClient(
-    config=config,
+    config=BSC_TESTNET_SETTINGS,
     wallet_address="your_wallet_address",
     private_key="your_private_key"
 )

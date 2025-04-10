@@ -1,6 +1,6 @@
 [project]
-name = "beeper"
-version = "0.1.0"
+name = "beeper-python"
+version = "0.1.1"
 description = "python sdk for beeper operation"
 readme = "README.md"
 requires-python = ">=3.10"
