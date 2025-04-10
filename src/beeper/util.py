@@ -1,5 +1,6 @@
 # util.py
 
+from decimal import ROUND_DOWN, Decimal
 import pkgutil
 from web3 import Web3 
 from web3.contract import Contract
@@ -49,6 +50,24 @@ def _load_contract_erc20(w3: Web3, token_address: str) -> Contract:
     contract_abi = pkgutil.get_data('beeper', 'solc/Token.abi').decode()
     return w3.eth.contract(address=token_address, abi=contract_abi)
 
+def format_decimal(value, decimal_places=8):
+    """
+    Formats a Decimal to a specified number of decimal places,
+    removes trailing zeros, and avoids scientific notation.
+    """
+
+    value = Web3.from_wei(value, 'ether')
+
+    # Ensure input is a Decimal
+    if not isinstance(value, Decimal):
+        value = Decimal(value)
+    
+    # Define the quantization level
+    quantize_level = Decimal(f"1.{'0' * decimal_places}")
+    # Quantize to the required decimal places
+    formatted_value = value.quantize(quantize_level, rounding=ROUND_DOWN)
+    # Convert to string, remove trailing zeros, and avoid scientific notation
+    return f"{formatted_value:.{decimal_places}f}".rstrip("0").rstrip(".")
 
 def _create_wallet(app_id: str):
     url = f"https://api.privy.io/v1/wallets/"
