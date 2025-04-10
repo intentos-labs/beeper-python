@@ -1,0 +1,12 @@
+[project]
+name = "beeper"
+version = "0.1.0"
+description = "python sdk for beeper operation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "web3>=7.10.0",
+    "python-dotenv>=1.1.0",
+    "requests>=2.26.0",
+    "pytest>=8.3.5",
+]
